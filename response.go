@@ -501,9 +501,9 @@ func appendIncluded(m *map[string]*Node, nodes ...*Node) {
 	for _, n := range nodes {
 		k := fmt.Sprintf("%s,%s", n.Type, n.ID)
 
-		if _, hasNode := included[k]; hasNode {
-			continue
-		}
+		//if _, hasNode := included[k]; hasNode {
+		//	continue
+		//}
 
 		included[k] = n
 	}

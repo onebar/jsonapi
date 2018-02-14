@@ -358,6 +358,17 @@ func unmarshalNode(data *Node, model reflect.Value, included *map[string]*Node) 
 				continue
 			}
 
+			if v.Kind() == reflect.Map {
+				values := map[string]string{}
+
+				for _, key := range v.MapKeys() {
+					values[key.String()] = fmt.Sprintf("%s", v.MapIndex(key))
+				}
+
+				fieldValue.Set(reflect.ValueOf(values))
+				continue
+			}
+
 			// JSON value was a float (numeric)
 			if v.Kind() == reflect.Float64 {
 				floatValue := v.Interface().(float64)
